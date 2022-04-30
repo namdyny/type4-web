@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Home from './Home';
+
 
 function App() {
+  
+  var [state, setState] = useState({
+    "page": "home",
+    "type": "food"
+  });
+  
+  function HandleClickRecord(params) {
+    setState({
+      "page": "record",
+      "type": state["type"]
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <><div className="App">
+        <button onClick={HandleClickRecord}>Record</button>
+        {state["page"]}
+
+        <Home setState={setState} state={state}/>
+
+        <hr/>
+        {state["page"]} {state["type"]}
     </div>
+    </>
+
   );
 }
 
