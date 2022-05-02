@@ -1,9 +1,10 @@
 import React from 'react';
+import RecordForm from './RecordForm';
 
 
 function FaecalForm(props) {
   return(
-    <div>FaecalForm</div>
+    <RecordForm type={props.type}/>
   )
 }
 

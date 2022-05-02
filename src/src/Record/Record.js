@@ -7,9 +7,9 @@ import SelectType from "./SelectType"
 function Record(props) {
   
   if (props.type.includes("food")) {
-    var recordForm = <FoodForm/>
+    var recordForm = <FoodForm type={props.type}/>
   } else {
-    var recordForm = <FaecalForm/>
+    var recordForm = <FaecalForm type={props.type}/>
   }
   
   return (
@@ -23,7 +23,10 @@ function Record(props) {
         setType={props.setType}
       />
 
+      <hr/>
+
       {recordForm}
+
     </div>
   )
 }
