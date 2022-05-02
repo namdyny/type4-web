@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
-import Home from './Home';
+import Home from './Home/Home';
+import Record from './Record/Record';
 
 
 function App() {
   
-  var [state, setState] = useState({
-    "page": "home",
-    "type": "food"
-  });
+  const title = "Type4"
   
-  function HandleClickRecord(params) {
-    setState({
-      "page": "record",
-      "type": state["type"]
-    })
+  var [page, setPage] = useState("home") // home | record | history | analytics
+  var [type, setType] = useState("food:🍱") // food:🍱 | faecal:💩
+
+  // for testing logics
+  // alert(page + " " + type)
+
+  if (page == "home") {
+    
+    return (
+      <Home
+        page={page}
+        setPage={setPage}
+        type={type}
+        setType={setType}
+      />
+    );
+
+  } else if (page == "record") {
+    
+    return (
+      <Record
+        type={type}
+        setType={setType}
+      />
+    )
+
+  } else if (page == "history") {
+    
+  } else if (page == "analytics") {
+    
   }
-
-  return (
-    <><div className="App">
-        <button onClick={HandleClickRecord}>Record</button>
-        {state["page"]}
-
-        <Home setState={setState} state={state}/>
-
-        <hr/>
-        {state["page"]} {state["type"]}
-    </div>
-    </>
-
-  );
 }
 
 export default App;
