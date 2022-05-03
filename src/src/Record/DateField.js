@@ -4,7 +4,7 @@ import React from 'react';
 function DateField(props) {
   return (
     <div>
-      <input type="date" name={props.name} value={props.value}></input>
+      <span>{props.verbose}</span> <input type="date" name={props.name} value={props.value}></input>
     </div>
   )
 }

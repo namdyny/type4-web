@@ -5,7 +5,7 @@ function SelectField(props) {
   
   var options = []
   props.value.forEach(element => {
-    options.push(<option value={element}>{element}</option>)
+    options.push(<option value={element[1]}>{element[0]}</option>)
   });
   var listOptions = options.map((option) =>
     option
@@ -13,7 +13,7 @@ function SelectField(props) {
   
   return (
     <div>
-      <select name={props.name}>
+      <span>{props.verbose}</span> <select name={props.name}>
         {listOptions}
       </select>
     </div>

@@ -9,14 +9,16 @@ import SelectField from './SelectField';
 function FoodForm(props) {
   
   if (props.type.includes("food")) {
-    var url = "http://192.168.1.101:8000/dinning_records/fget/form_fields"
+    var getUrl = "http://192.168.1.101:8000/dinning_records/fget/form_fields"
+    var postUrl = "http://192.168.1.101:8000/dinning_records/add"
   } else {
-    var url = "http://192.168.1.101:8000/faecal_records/fget/form_fields"
+    var getUrl = "http://192.168.1.101:8000/faecal_records/fget/form_fields"
+    var postUrl = "http://192.168.1.101:8000/faecal_records/add"
   }
   var [formFields, setFormFields] = useState("")
   const fetchData = () => {
     return fetch(
-      url,
+      getUrl,
       {headers: { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -31,25 +33,53 @@ function FoodForm(props) {
   try {
     formFields.forEach(element => {
       if (element["type"] == "date") {
-        componentFields.push(<DateField name={element["name"]} value={element["value"]}/>)
+        componentFields.push(<DateField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "textarea") {
-        componentFields.push(<TextareaField name={element["name"]} placeholder={element["placeholder"]}/>)
+        componentFields.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
       } else if (element["type"] == "number") {
-        componentFields.push(<NumberField name={element["name"]} value={element["value"]}/>)
+        componentFields.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "checkbox") {
-        componentFields.push(<CheckboxField name={element["name"]} value={element["value"]}/>)
+        componentFields.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "select") {
-        componentFields.push(<SelectField name={element["name"]} value={element["value"]}/>)
+        componentFields.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       }
     });
     var listFields = componentFields.map((field) =>
       <div>{field}</div>
     );
   } catch {}
-  
+
+  function handleSubmit(e) {
+    try {
+      e.preventDefault();
+      console.log(formFields)
+      var formData = {}
+      formFields.forEach(element => {
+        formData[element["name"]] = document.getElementsByName(element["name"])[0].value
+      });
+      console.log(formData)
+      var requestOptions = {
+          method: 'POST',
+          headers: { 
+              'Accept': 'application/json',
+              'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+      };
+      fetch(postUrl, requestOptions).then(
+          console.log(JSON.stringify(formData))
+      ).then(function(response){
+          console.log(response)
+          alert(response.statusText)
+          return response.json();
+      });
+      props.setPage("history")
+    } catch {}
+  }
+
+
   return(
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         {listFields}
         <button value="Submit">Submit</button>
       </form>

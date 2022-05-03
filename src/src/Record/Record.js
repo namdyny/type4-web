@@ -7,9 +7,9 @@ import SelectType from "./SelectType"
 function Record(props) {
   
   if (props.type.includes("food")) {
-    var recordForm = <FoodForm type={props.type}/>
+    var recordForm = <FoodForm type={props.type} setPage={props.setPage}/>
   } else {
-    var recordForm = <FaecalForm type={props.type}/>
+    var recordForm = <FaecalForm type={props.type} setPage={props.setPage}/>
   }
   
   return (

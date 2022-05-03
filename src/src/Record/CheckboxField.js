@@ -5,7 +5,7 @@ function CheckboxField(props) {
   if (props.value == false) {
     return (
       <div>
-        <input type="checkbox" name={props.name} value={props.value}></input>
+        <span>{props.verbose}</span> <input type="checkbox" name={props.name} value={props.value}></input>
       </div>
     )
   } else {

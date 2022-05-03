@@ -30,6 +30,7 @@ function App() {
       <Record
         type={type}
         setType={setType}
+        setPage={setPage}
       />
     )
 
