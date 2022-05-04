@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import History from './History/History';
 import Home from './Home/Home';
 import Record from './Record/Record';
 
@@ -36,6 +37,14 @@ function App() {
 
   } else if (page == "history") {
     
+    return (
+      <History
+        type={type}
+        setType={setType}
+        setPage={setPage}
+      />
+    )
+
   } else if (page == "analytics") {
     
   }

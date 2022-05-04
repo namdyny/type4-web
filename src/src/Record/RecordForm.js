@@ -15,6 +15,7 @@ function FoodForm(props) {
     var getUrl = "http://192.168.1.101:8000/faecal_records/fget/form_fields"
     var postUrl = "http://192.168.1.101:8000/faecal_records/add"
   }
+  
   var [formFields, setFormFields] = useState("")
   const fetchData = () => {
     return fetch(
@@ -29,22 +30,22 @@ function FoodForm(props) {
     }
   useEffect(() => { fetchData(); }, []);
     
-  var componentFields = []
+  var fieldRows = []
   try {
     formFields.forEach(element => {
       if (element["type"] == "date") {
-        componentFields.push(<DateField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<DateField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "textarea") {
-        componentFields.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
+        fieldRows.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
       } else if (element["type"] == "number") {
-        componentFields.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "checkbox") {
-        componentFields.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "select") {
-        componentFields.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       }
     });
-    var listFields = componentFields.map((field) =>
+    var listFields = fieldRows.map((field) =>
       <div>{field}</div>
     );
   } catch {}
