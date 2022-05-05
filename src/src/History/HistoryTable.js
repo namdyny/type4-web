@@ -40,24 +40,38 @@ function HistoryTable(props) {
   useEffect(() => { fetchFieldData(); }, [props.type]);
   
   var historyRows = []
+  var historyHead = []
   try {
     console.log(historyRecords)
     console.log(formFields)
 
+    formFields.forEach(field => {
+      historyHead.push(
+        <th>{field["verbose"]}</th>
+      )
+    });
+    var listHead = <tr>{historyHead}</tr>
+    
     historyRecords.forEach(history => {
       var thisRow = []
       formFields.forEach(field => {
-        thisRow.push(
-          <td>
-            {history[field["name"]]}
-          </td>
-        )
+        if (field["type"] == "checkbox") {
+          if (history[field["name"]] == true) {
+            thisRow.push(
+              <td>yes</td>
+            )
+          } else {
+            thisRow.push(
+              <td>no</td>
+            )
+          }
+        } else {
+          thisRow.push(
+            <td>{history[field["name"]]}</td>
+          )
+        }
       });
-      historyRows.push(
-        //<tr>
-          thisRow
-        //</tr>
-      )
+      historyRows.push(thisRow)
     });
     var listHistory = historyRows.map((history) =>
       <tr>{history}</tr>
@@ -67,7 +81,10 @@ function HistoryTable(props) {
 
   
   return (
-    <table>{listHistory}</table>
+    <table>
+      <thead>{listHead}</thead>
+      <tbody>{listHistory}</tbody>
+    </table>
   )
   
 }

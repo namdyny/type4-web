@@ -6,11 +6,10 @@ import HistoryTable from './HistoryTable';
 function History(props) {
   
   return (
-    <div>
+    <div className='container'>
       
-      <div>History</div>
-      
-      {props.type}
+      <h2>History</h2>
+
       <SelectType
         type={props.type}
         setType={props.setType}

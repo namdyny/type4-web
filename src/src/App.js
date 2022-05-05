@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import History from './History/History';
-import Home from './Home/Home';
+import FootButton from './Home/FootButton';
+import Head from './Home/Head';
 import Record from './Record/Record';
 
 
@@ -17,36 +18,71 @@ function App() {
   if (page == "home") {
     
     return (
-      <Home
-        page={page}
-        setPage={setPage}
-        type={type}
-        setType={setType}
-      />
+      <>
+        <Head/>
+        <hr/>
+        <FootButton
+          page={page}
+          setPage={setPage}
+          type={type}
+          setType={setType}
+        />
+      </>
     );
 
   } else if (page == "record") {
     
     return (
-      <Record
+      <>
+        <Head/>
+        <Record
         type={type}
         setType={setType}
         setPage={setPage}
-      />
+        />
+        <hr/>
+        <FootButton
+          page={page}
+          setPage={setPage}
+          type={type}
+          setType={setType}
+        />
+      </>
     )
 
   } else if (page == "history") {
     
     return (
-      <History
-        type={type}
-        setType={setType}
-        setPage={setPage}
-      />
+      <>
+        <Head/>
+        <History
+          type={type}
+          setType={setType}
+          setPage={setPage}
+        />
+        <hr/>
+        <FootButton
+          page={page}
+          setPage={setPage}
+          type={type}
+          setType={setType}
+        />
+      </>
     )
 
   } else if (page == "analytics") {
-    
+    return (
+      <>
+        <Head/>
+        <hr/>
+        <FootButton
+          page={page}
+          setPage={setPage}
+          type={type}
+          setType={setType}
+        />
+      </>
+    )
   }
 }
 

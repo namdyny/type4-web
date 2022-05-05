@@ -38,7 +38,7 @@ function FoodForm(props) {
       } else if (element["type"] == "textarea") {
         fieldRows.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
       } else if (element["type"] == "number") {
-        fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]} min={element["min"]} max={element["max"]}/>)
       } else if (element["type"] == "checkbox") {
         fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "select") {
@@ -79,10 +79,14 @@ function FoodForm(props) {
 
 
   return(
-    <div>
+    <div className='container'>
       <form onSubmit={handleSubmit}>
         {listFields}
-        <button value="Submit">Submit</button>
+        <div className='container'>
+          <div className='row'>
+            <button className='btn btn-success btn-block' value="submit">Submit</button>
+          </div>
+        </div>
       </form>
     </div>
   )

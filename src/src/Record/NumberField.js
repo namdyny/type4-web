@@ -2,9 +2,11 @@ import React from 'react';
 
 
 function NumberField(props) {
+  // FIXME make me dynamic
   return (
-    <div>
-      <span>{props.verbose}</span> <input type="number" name={props.name} value={props.value}></input>
+    <div className='form-group'>
+      <label>{props.verbose}</label> <input className='form-control' type="number" name={props.name} min={props.min} max={props.max} required></input>
+      <br/>
     </div>
   )
 }

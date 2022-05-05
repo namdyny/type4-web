@@ -13,11 +13,10 @@ function Record(props) {
   }
   
   return (
-    <div>
+    <div className='container'>
       
-      <div>Record</div>
-      
-      {props.type}
+      <h2>Record</h2>
+
       <SelectType
         type={props.type}
         setType={props.setType}

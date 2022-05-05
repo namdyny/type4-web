@@ -12,10 +12,11 @@ function SelectField(props) {
   );
   
   return (
-    <div>
-      <span>{props.verbose}</span> <select name={props.name}>
+    <div className='form-group'>
+      <label>{props.verbose}</label> <select className='form-control' name={props.name}>
         {listOptions}
       </select>
+      <br/>
     </div>
   )
 }

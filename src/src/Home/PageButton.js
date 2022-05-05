@@ -8,11 +8,7 @@ function PageButton(props) {
   }
 
   return (
-    <div>
-
-      <button onClick={handleHomeButtonClick}>{props.page}</button>
-    
-    </div>
+      <button className={props.color} type='button' onClick={handleHomeButtonClick}>{props.page}</button>
   );
 }
 export default PageButton;

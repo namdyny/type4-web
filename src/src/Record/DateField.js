@@ -3,8 +3,10 @@ import React from 'react';
 
 function DateField(props) {
   return (
-    <div>
-      <span>{props.verbose}</span> <input type="date" name={props.name} value={props.value}></input>
+    // FIXME make me dynamic
+    <div className='form-group'>
+      <label>{props.verbose}</label> <input className='form-control' type="date" name={props.name} required></input>
+      <br/>
     </div>
   )
 }
