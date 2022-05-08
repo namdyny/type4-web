@@ -47,7 +47,7 @@ function HistoryTable(props) {
 
     formFields.forEach(field => {
       historyHead.push(
-        <th>{field["verbose"]}</th>
+        <th>{field["header"]}</th>
       )
     });
     var listHead = <tr>{historyHead}</tr>
@@ -81,10 +81,12 @@ function HistoryTable(props) {
 
   
   return (
-    <table>
-      <thead>{listHead}</thead>
-      <tbody>{listHistory}</tbody>
-    </table>
+    <div class="table-responsive">
+      <table className='table table-striped table-dark'>
+        <thead>{listHead}</thead>
+        <tbody>{listHistory}</tbody>
+      </table>
+    </div>
   )
   
 }

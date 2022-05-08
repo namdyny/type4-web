@@ -7,8 +7,8 @@ function History(props) {
   
   return (
     <div className='container'>
-      
-      <h2>History</h2>
+      <br/>
+      <h1 align='center'>📜</h1>
 
       <SelectType
         type={props.type}

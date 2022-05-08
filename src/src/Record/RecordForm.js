@@ -42,7 +42,7 @@ function FoodForm(props) {
       } else if (element["type"] == "checkbox") {
         fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
       } else if (element["type"] == "select") {
-        fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]} display={element["display"]}/>)
       }
     });
     var listFields = fieldRows.map((field) =>

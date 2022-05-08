@@ -14,8 +14,8 @@ function Record(props) {
   
   return (
     <div className='container'>
-      
-      <h2>Record</h2>
+      <br/>
+      <h1 align='center'>✍🏻</h1>
 
       <SelectType
         type={props.type}

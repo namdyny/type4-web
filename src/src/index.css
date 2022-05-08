@@ -1,3 +1,42 @@
 .footer-button {
   width: 7rem;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+.color-record {
+  background-color: #6fb1a0 !important;
+  border-color: #6fb1a0 !important;
+}
+.color-record:active {
+  background-color: #629c8d !important;
+  border-color: #629c8d !important;
+}
+.color-history {
+  background-color: #fe7434 !important;
+  border-color: #fe7434 !important;
+  color: white !important;
+}
+.color-history:active {
+  background-color: #d4602a !important;
+  border-color: #d4602a !important;
+}
+.color-analytics {
+  background-color: #fea802 !important;
+  border-color: #fea802 !important;
+}
+.color-analytics:active {
+  background-color: #d99102 !important;
+  border-color: #d99102 !important;
+}
+
+body {
+  min-height: 40rem;
+}

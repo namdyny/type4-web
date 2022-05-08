@@ -10,7 +10,7 @@ function App() {
   const title = "Type4"
   
   var [page, setPage] = useState("home") // home | record | history | analytics
-  var [type, setType] = useState("food:🍱") // food:🍱 | faecal:💩
+  var [type, setType] = useState("food:🍲") // food:🍲 | faecal:💩
 
   // for testing logics
   // alert(page + " " + type)
@@ -19,8 +19,7 @@ function App() {
     
     return (
       <>
-        <Head/>
-        <hr/>
+        <br/><br/><br/>
         <FootButton
           page={page}
           setPage={setPage}
@@ -34,13 +33,13 @@ function App() {
     
     return (
       <>
-        <Head/>
         <Record
         type={type}
         setType={setType}
         setPage={setPage}
         />
-        <hr/>
+        {/* TODO as margin */}
+        <br/><br/><br/><br/><br/>
         <FootButton
           page={page}
           setPage={setPage}
@@ -54,13 +53,12 @@ function App() {
     
     return (
       <>
-        <Head/>
         <History
           type={type}
           setType={setType}
           setPage={setPage}
         />
-        <hr/>
+        <br/><br/><br/>
         <FootButton
           page={page}
           setPage={setPage}
@@ -70,11 +68,10 @@ function App() {
       </>
     )
 
-  } else if (page == "analytics") {
+  } else if (page == "analyze") {
     return (
       <>
-        <Head/>
-        <hr/>
+        <br/><br/><br/>
         <FootButton
           page={page}
           setPage={setPage}

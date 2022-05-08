@@ -1,29 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 
 
 function SelectType(props) {
-  
-  // function handleSelectTypeChange(params) {
-  //   if (props.type.includes("food")) {
-  //     props.setType("faecal:💩")
-  //   } else {
-  //     props.setType("food:🍱")
-  //   }
-  // }
-  function handleSelectFaecalChange(params) {
-    props.setType("faecal:💩")
+  if (props.type.includes("food")) {
+    var type = "Type:🍲"
+  } else {
+    var type = "Type:💩"
   }
-  function handleSelectFoodChange(params) {
-    props.setType("food:🍱")
+  var [recordType, setRecordType] = useState(type)
+
+  function handleSelectTypeChange(params) {
+    if (props.type.includes("food")) {
+      props.setType("faecal:💩")
+      setRecordType("Type:💩")
+    } else {
+      props.setType("food:🍲")
+      setRecordType("Type:🍲")
+    }
   }
 
   return (
     <div className='d-flex justify-content-center'>
-        <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off" checked/>
-        <label class="btn btn-outline-primary" for="primary-outlined" onClick={handleSelectFoodChange}>Type 🍱</label>
-        <input type="radio" class="btn-check" name="options-outlined" id="warning-outlined" autocomplete="off"/>
-        <label class="btn btn-outline-warning" for="warning-outlined" onClick={handleSelectFaecalChange}>Type 💩</label>
-        {/* <input className='form-check-input' onChange={handleSelectTypeChange} type="checkbox" id="select-type" name="type" value="0" ></input> */}
+      <div class="form-check form-switch">
+        <input onChange={handleSelectTypeChange} class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" />
+        <label class="form-check-label" for="flexSwitchCheckChecked">{recordType}</label>
+      </div>
     </div>
   )
 }
