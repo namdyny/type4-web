@@ -4,7 +4,7 @@ import RecordForm from './RecordForm';
 
 function FoodForm(props) {
   return(
-    <RecordForm type={props.type} setPage={props.setPage}/>
+    <RecordForm lastDefault={props.lastDefault} editMode={props.editMode} type={props.type} setPage={props.setPage}/>
   )
 }
 

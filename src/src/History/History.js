@@ -17,7 +17,14 @@ function History(props) {
 
       <hr/>
 
-      <HistoryTable type={props.type}/>
+      <HistoryTable 
+        page={props.page}
+        setPage={props.setPage}
+        type={props.type}
+        setType={props.setType}
+        setEditMode={props.setEditMode}
+        setLastDefault={props.setLastDefault}
+      />
 
     </div>
   )

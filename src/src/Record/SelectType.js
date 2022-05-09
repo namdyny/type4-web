@@ -17,6 +17,9 @@ function SelectType(props) {
       props.setType("food:🍲")
       setRecordType("Type:🍲")
     }
+    if (props.page == "record") {
+      props.setEditMode("insert")
+    }
   }
 
   return (

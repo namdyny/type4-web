@@ -5,6 +5,11 @@ function PageButton(props) {
   
   function handleHomeButtonClick(params) {
     props.setPage(props.page)
+    if (props.page == "record") {
+      props.setEditMode("insert")
+    } else if (props.page == "history") {
+      props.setEditMode("update")
+    }
   }
 
   if (props.page == "record") {

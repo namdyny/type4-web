@@ -11,6 +11,17 @@ function App() {
   
   var [page, setPage] = useState("home") // home | record | history | analytics
   var [type, setType] = useState("food:🍲") // food:🍲 | faecal:💩
+  var [editMode, setEditMode] = useState("insert") // food:🍲 | faecal:💩
+  var [lastDefault, setLastDefault] = useState("") // food:🍲 | faecal:💩
+
+  var footButton = <FootButton
+    page={page}
+    setPage={setPage}
+    type={type}
+    setType={setType}
+    editMode={editMode}
+    setEditMode={setEditMode}
+  />
 
   // for testing logics
   // alert(page + " " + type)
@@ -20,12 +31,7 @@ function App() {
     return (
       <>
         <br/><br/><br/>
-        <FootButton
-          page={page}
-          setPage={setPage}
-          type={type}
-          setType={setType}
-        />
+        {footButton}
       </>
     );
 
@@ -33,19 +39,20 @@ function App() {
     
     return (
       <>
-        <Record
-        type={type}
-        setType={setType}
-        setPage={setPage}
-        />
+        <main>
+          <Record
+            type={type}
+            page={page}
+            setType={setType}
+            setPage={setPage}
+            setEditMode={setEditMode}
+            editMode={editMode}
+            lastDefault={lastDefault}
+          />
+        </main>
         {/* TODO as margin */}
         <br/><br/><br/><br/><br/>
-        <FootButton
-          page={page}
-          setPage={setPage}
-          type={type}
-          setType={setType}
-        />
+        {footButton}
       </>
     )
 
@@ -54,17 +61,15 @@ function App() {
     return (
       <>
         <History
+          page={page}
           type={type}
           setType={setType}
           setPage={setPage}
+          setLastDefault={setLastDefault}
+          setEditMode={setEditMode}
         />
         <br/><br/><br/>
-        <FootButton
-          page={page}
-          setPage={setPage}
-          type={type}
-          setType={setType}
-        />
+        {footButton}
       </>
     )
 
@@ -72,12 +77,7 @@ function App() {
     return (
       <>
         <br/><br/><br/>
-        <FootButton
-          page={page}
-          setPage={setPage}
-          type={type}
-          setType={setType}
-        />
+        {footButton}
       </>
     )
   }

@@ -9,7 +9,7 @@ function FootButton(props) {
       <hr/>
       <div class="container" align='center'>
         <div className='btn-group'>
-          <PageButton color="btn btn-danger footer-button color-record" page="record" setPage={props.setPage}/>
+          <PageButton color="btn btn-danger footer-button color-record" page="record" setPage={props.setPage} setEditMode={props.setEditMode}/>
           <PageButton color="btn btn-warning footer-button color-history" page="history" setPage={props.setPage}/>
           <PageButton color="btn btn-primary footer-button color-analytics" page="analyze" setPage={props.setPage}/>
         </div>

@@ -7,11 +7,27 @@ function SelectField(props) {
   
   if (props.display == "name") {
     props.value.forEach(element => {
-      options.push(<option value={element[1]}>{element[0]}</option>)
+      if (props.selected == '') {
+        options.push(<option value={element[1]}>{element[0]}</option>)
+      } else {
+        if (element[1] == props.selected) {
+          options.push(<option value={element[1]} selected>{element[0]}</option>)
+        } else {
+          options.push(<option value={element[1]}>{element[0]}</option>)
+        }
+      }
     });
   } else if (props.display == "value") {
     props.value.forEach(element => {
-      options.push(<option value={element[1]}>{element[1]}</option>)
+      if (props.selected == '') {
+        options.push(<option value={element[1]}>{element[1]}</option>)
+      } else {
+        if (element[1] == props.selected) {
+          options.push(<option value={element[1]} selected>{element[1]}</option>)
+        } else {
+          options.push(<option value={element[1]}>{element[1]}</option>)
+        }
+      }
     });
   }
 

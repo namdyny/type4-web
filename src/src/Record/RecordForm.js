@@ -9,11 +9,19 @@ import SelectField from './SelectField';
 function FoodForm(props) {
   
   if (props.type.includes("food")) {
-    var getUrl = "http://192.168.1.101:8000/dinning_records/fget/form_fields"
-    var postUrl = "http://192.168.1.101:8000/dinning_records/add"
+    var getUrl = "http://0.0.0.0:8000/dinning_records/fget/form_fields"
+    if (props.editMode == "insert") {
+      var postUrl = "http://0.0.0.0:8000/dinning_records/add"
+    } else {
+      var postUrl = `http://0.0.0.0:8000/dinning_records/add?id=${props.lastDefault["id"]}`
+    }
   } else {
-    var getUrl = "http://192.168.1.101:8000/faecal_records/fget/form_fields"
-    var postUrl = "http://192.168.1.101:8000/faecal_records/add"
+    var getUrl = "http://0.0.0.0:8000/faecal_records/fget/form_fields"
+    if (props.editMode == "insert") {
+      var postUrl = "http://0.0.0.0:8000/faecal_records/add"
+    } else {
+      var postUrl = `http://0.0.0.0:8000/faecal_records/add?id=${props.lastDefault["id"]}`
+    }
   }
   
   var [formFields, setFormFields] = useState("")
@@ -32,19 +40,40 @@ function FoodForm(props) {
     
   var fieldRows = []
   try {
-    formFields.forEach(element => {
-      if (element["type"] == "date") {
-        fieldRows.push(<DateField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
-      } else if (element["type"] == "textarea") {
-        fieldRows.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
-      } else if (element["type"] == "number") {
-        fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]} min={element["min"]} max={element["max"]}/>)
-      } else if (element["type"] == "checkbox") {
-        fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
-      } else if (element["type"] == "select") {
-        fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]} display={element["display"]}/>)
-      }
-    });
+    console.log(props.editMode)
+    console.log(props.lastDefault)
+    if (props.editMode == "insert") {
+      formFields.forEach(element => {
+        if (element["type"] == "date") {
+          fieldRows.push(<DateField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        } else if (element["type"] == "textarea") {
+          fieldRows.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} required={element["required"]}/>)
+        } else if (element["type"] == "number") {
+          fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={element["value"]} min={element["min"]} max={element["max"]}/>)
+        } else if (element["type"] == "checkbox") {
+          fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={element["value"]}/>)
+        } else if (element["type"] == "select") {
+          // TODO if defaultValue and value == option
+          fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]} display={element["display"]} selected={element["selected"]}/>)
+        }
+      });
+    } else if (props.editMode == "update") {
+      formFields.forEach(element => {
+        if (element["type"] == "date") {
+          fieldRows.push(<DateField verbose={element["verbose"]} name={element["name"]} value={props.lastDefault[element["name"]]}/>)
+        } else if (element["type"] == "textarea") {
+          fieldRows.push(<TextareaField verbose={element["verbose"]} name={element["name"]} placeholder={element["placeholder"]} value={props.lastDefault[element["name"]]} required={element["required"]}/>)
+        } else if (element["type"] == "number") {
+          fieldRows.push(<NumberField verbose={element["verbose"]} name={element["name"]} value={props.lastDefault[element["name"]]} min={element["min"]} max={element["max"]}/>)
+        } else if (element["type"] == "checkbox") {
+          fieldRows.push(<CheckboxField verbose={element["verbose"]} name={element["name"]} value={props.lastDefault[element["name"]]}/>)
+        } else if (element["type"] == "select") {
+          // TODO if defaultValue and value == option
+          fieldRows.push(<SelectField verbose={element["verbose"]} name={element["name"]} value={element["value"]} display={element["display"]} selected={props.lastDefault[element["name"]]}/>)
+        }
+      });
+    }
+      
     var listFields = fieldRows.map((field) =>
       <div>{field}</div>
     );

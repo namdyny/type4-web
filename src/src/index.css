@@ -38,5 +38,10 @@
 }
 
 body {
-  min-height: 40rem;
+  background-color: #212529 !important;
+}
+
+main {
+  flex: 1 !important;
+  height: 100%;
 }
